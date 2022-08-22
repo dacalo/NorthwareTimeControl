@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="NorthwareTimeControl.View.Account.LoginPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:helpers="clr-namespace:NorthwareTimeControl.Helpers.Fonts"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    ios:Page.UseSafeArea="true"
+    BackgroundColor="{StaticResource ColorBackground}"
+    NavigationPage.HasNavigationBar="False">
+
+    <ScrollView>
+        <StackLayout>
+            <Grid
+                Padding="40,40,0,0"
+                ColumnDefinitions="*,Auto"
+                HorizontalOptions="End"
+                RowDefinitions="Auto, Auto, Auto">
+                <Image
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    HeightRequest="{OnPlatform Android={OnIdiom Phone=60,
+                                                                Tablet=75},
+                                               iOS={OnIdiom Phone=60,
+                                                            Tablet=75}}"
+                    HorizontalOptions="StartAndExpand"
+                    Source="logoApp" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Margin="0,30,0,0"
+                    Style="{StaticResource LabelTitleBold}"
+                    Text="{xct:Translate LoginTitle}" />
+                <StackLayout
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Spacing="0">
+                    <Label
+                        FontFamily="FontSecondary"
+                        FontSize="{StaticResource FontSizeSM}"
+                        HorizontalTextAlignment="Start"
+                        Text="{xct:Translate LoginGreeting}"
+                        TextColor="{StaticResource ColorFont}" />
+                    <StackLayout Orientation="Horizontal">
+                        <Label
+                            FontFamily="FontSecondaryBold"
+                            FontSize="{StaticResource FontSizeSM}"
+                            Text="{xct:Translate LoginGreeting1}"
+                            TextColor="{StaticResource ColorFont}"
+                            VerticalOptions="Center" />
+                        <Label
+                            FontFamily="FontSecondary"
+                            FontSize="{StaticResource FontSizeSM}"
+                            Text="{xct:Translate LoginGreeting2}"
+                            TextColor="{StaticResource ColorFont}"
+                            VerticalOptions="Center" />
+                    </StackLayout>
+                </StackLayout>
+                <Image
+                    Grid.RowSpan="3"
+                    Grid.Column="1"
+                    Source="imageApp.png"
+                    VerticalOptions="EndAndExpand" />
+            </Grid>
+            <!--  Form  -->
+            <StackLayout>
+                <Grid
+                    Margin="0,30,0,0"
+                    Padding="40,0,40,0"
+                    ColumnDefinitions="Auto, *, Auto"
+                    RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto"
+                    RowSpacing="0">
+                      <!--Email-->  
+                    <Label
+                        Grid.Row="0"
+                        Grid.ColumnSpan="3"
+                        Style="{StaticResource LabelField}"
+                        Text="{xct:Translate EmailPlaceholder}" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Style="{StaticResource LabelIcon}"
+                        Text="{x:Static helpers:IconFont.Envelope}" />
+                    <Entry
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        FontFamily="FontSecondary"
+                        FontSize="{StaticResource FontSizeSM}"
+                        Keyboard="Email"
+                        Text="{Binding Email}">
+                        <Entry.Effects>
+                            <xct:RemoveBorderEffect />
+                        </Entry.Effects>
+                    </Entry>
+                    <BoxView
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        Style="{StaticResource Divider}" />
+                      <!--Password-->  
+                    <Label
+                        Grid.Row="4"
+                        Grid.ColumnSpan="3"
+                        Margin="0,30,0,0"
+                        Style="{StaticResource LabelField}"
+                        Text="{xct:Translate PasswordPlaceholder}" />
+                    <Label
+                        Grid.Row="5"
+                        Grid.Column="0"
+                        Style="{StaticResource LabelIcon}"
+                        Text="{x:Static helpers:IconFont.Key}" />
+                    <Entry
+                        Grid.Row="5"
+                        Grid.Column="1"
+                        FontFamily="FontSecondary"
+                        FontSize="{StaticResource FontSizeSM}"
+                        IsPassword="{Binding IsPassword}"
+                        Text="{Binding Password}">
+                        <Entry.Effects>
+                            <xct:RemoveBorderEffect />
+                        </Entry.Effects>
+                    </Entry>
+                    <Label
+                        Grid.Row="5"
+                        Grid.Column="2"
+                        Style="{StaticResource LabelIcon}"
+                        Text="{Binding IconShowPassword}"
+                        TextColor="{StaticResource ColorIconGray}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ShowPasswordCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <BoxView
+                        Grid.Row="6"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        Style="{StaticResource Divider}" />
+                </Grid>
+                
+                <Button
+                    IsEnabled="{Binding IsEnabled}"
+                    Margin="0,40,0,0"
+                    Command="{Binding LoginCommand}"
+                    Style="{StaticResource PrimaryButton}"
+                    Text="{xct:Translate GetInto}" />
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
